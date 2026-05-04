@@ -1,18 +1,9 @@
 import Tile from './tile'
 
-function Board() {
-  // Mock board state - will be replaced with actual game logic
-  // Structure: 4x4 array of values (0 for empty, numbers for tiles)
-  const mockBoard = [
-    [2, 4, 0, 0],
-    [4, 2, 8, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-  ]
-
+function Board({ board, gameOver }) {
   return (
     <div className="board">
-      {mockBoard.map((row, rowIndex) => (
+      {board.map((row, rowIndex) => (
         <div key={rowIndex} className="board-row">
           {row.map((value, colIndex) => (
             <Tile 
@@ -23,6 +14,7 @@ function Board() {
           ))}
         </div>
       ))}
+      {gameOver && <div className="game-over-overlay">Game Over!</div>}
     </div>
   )
 }
