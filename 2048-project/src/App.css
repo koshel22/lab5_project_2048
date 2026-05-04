@@ -54,6 +54,7 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   width: 420px;
   height: 420px;
+  position: relative;
 }
 
 .app-container.theme-light .board {
@@ -288,6 +289,7 @@
   border: none;
   font-size: 14px;
   font-weight: 700;
+  color: white;
   cursor: pointer;
   transition: all 0.3s ease;
   text-transform: capitalize;
@@ -298,9 +300,40 @@
   justify-content: center;
   padding: 0;
   outline: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+}
+
+.game-over-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px 60px;
+  border-radius: 12px;
+  font-size: 56px;
+  font-weight: 700;
+  color: #d9534f;
+  text-align: center;
+  white-space: nowrap;
+  z-index: 1000;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.3s ease;
+}
+
+.app-container.theme-dark .game-over-overlay {
+  background: rgba(45, 45, 45, 0.98);
+  color: #ff6b6b;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -55%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .app-container.theme-light .new-game-btn {

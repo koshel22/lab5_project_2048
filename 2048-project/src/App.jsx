@@ -3,9 +3,11 @@ import './App.css'
 import Board from './components/board'
 import Score from './components/score'
 import ThemeToggle from './components/themeToggle'
+import { useGame } from './hooks/usegame'
 
 function App() {
   const [theme, setTheme] = useState('light')
+  const { board, score, gameOver, move, restart } = useGame()
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'))
@@ -16,11 +18,11 @@ function App() {
       <div className="game-wrapper">
         <header className="game-header">
           <h1>2048</h1>
-          <Score />
+          <Score score={score} onRestart={restart} />
         </header>
         
         <main className="game-main">
-          <Board />
+          <Board board={board} gameOver={gameOver} />
         </main>
 
         <ThemeToggle theme={theme} onToggle={toggleTheme} />
