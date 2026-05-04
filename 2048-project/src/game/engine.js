@@ -1,12 +1,10 @@
 import { move } from './moveRow.js';
 import { spawnTile } from './spawnTile.js';
 
-// 🔹 создать пустую доску
 function createEmptyBoard(size = 4) {
   return Array.from({ length: size }, () => Array(size).fill(0));
 }
 
-// 🔹 старт игры (2 плитки)
 export function initGame(size = 4) {
   let board = createEmptyBoard(size);
 
@@ -20,7 +18,6 @@ export function initGame(size = 4) {
   };
 }
 
-// 🔹 проверка: есть ли ходы
 function canMove(board) {
   const size = board.length;
 
@@ -36,13 +33,11 @@ function canMove(board) {
   return false;
 }
 
-// 🔹 основной шаг игры
 export function gameStep(state, direction) {
   if (state.gameOver) return state;
 
   const result = move(state.board, direction, state.score);
 
-  // ❗ если не было движения — ничего не делаем
   if (!result.moved) {
     return state;
   }
