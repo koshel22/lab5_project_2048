@@ -56,13 +56,13 @@ export function move(board, direction, currentScore) {
     
     mergedPositions.forEach(pos => {
       if (direction === 'right') {
-        mergedTiles.push({ row: rowIndex, col: row.length - 1 - pos });
+        mergedTiles.push({ row: rowIndex, col: row.length - 1 - pos, direction: 'right' });
       } else if (direction === 'left') {
-        mergedTiles.push({ row: rowIndex, col: pos });
+        mergedTiles.push({ row: rowIndex, col: pos, direction: 'left' });
       } else if (direction === 'up') {
-        mergedTiles.push({ row: pos, col: rowIndex });
+        mergedTiles.push({ row: pos, col: rowIndex, direction: 'up' });
       } else if (direction === 'down') {
-        mergedTiles.push({ row: row.length - 1 - pos, col: rowIndex });
+        mergedTiles.push({ row: row.length - 1 - pos, col: rowIndex, direction: 'down' });
       }
     });
     

@@ -285,6 +285,36 @@
 }
 
 
+@keyframes buttonPress {
+  0% {
+    transform: scale(1) translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    transform: scale(0.98) translateY(2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@keyframes themeTogglePress {
+  0% {
+    transform: scale(1) rotate(0deg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    transform: scale(0.92) rotate(-10deg);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+}
+
 .new-game-btn {
   width: 200px;
   height: 50px;
@@ -304,6 +334,10 @@
   justify-content: center;
   padding: 0;
   outline: none;
+}
+
+.new-game-btn:active {
+  animation: buttonPress 0.15s ease-out;
 }
 
 .game-over-overlay {
@@ -341,35 +375,287 @@
 }
 
 
-@keyframes tileMerge {
+@keyframes tileMergeLeft {
   0% {
-    transform: scale(1) skewX(0deg) skewY(0deg);
-    filter: brightness(1) blur(0px);
+    transform: translateX(0) scale(1) rotateZ(0deg);
+    opacity: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    filter: brightness(1) saturate(1);
   }
-  15% {
-    transform: scaleX(1.18) scaleY(0.92) skewX(-6deg) skewY(2deg);
-    filter: brightness(1.01) blur(0.2px);
+  8% {
+    transform: translateX(4px) scale(1.02) rotateZ(5deg);
+    opacity: 0.95;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    filter: brightness(1.05) saturate(1.1);
   }
-  35% {
-    transform: scaleX(0.92) scaleY(1.15) skewX(8deg) skewY(-4deg);
-    filter: brightness(1.01) blur(0.3px);
+  16% {
+    transform: translateX(-4px) scale(1.03) rotateZ(-5deg);
+    opacity: 1;
+    box-shadow: 0 0 18px rgba(255, 200, 80, 0.5);
+    filter: brightness(1.1) saturate(1.15);
   }
-  55% {
-    transform: scaleX(1.12) scaleY(0.98) skewX(-8deg) skewY(3deg);
-    filter: brightness(1.01) blur(0.2px);
+  24% {
+    transform: translateX(3px) scale(1.04) rotateZ(4deg);
+    opacity: 0.98;
+    box-shadow: inset 8px 0 14px rgba(255, 220, 100, 0.6), 
+                0 0 28px rgba(255, 200, 80, 0.8),
+                0 0 40px rgba(255, 180, 60, 0.4);
+    filter: brightness(1.2) saturate(1.3);
   }
-  75% {
-    transform: scaleX(1.04) scaleY(1.08) skewX(4deg) skewY(-2deg);
-    filter: brightness(1.01) blur(0.1px);
+  32% {
+    transform: translateX(-3px) scale(1.03) rotateZ(-4deg);
+    opacity: 0.97;
+    box-shadow: inset 6px 0 12px rgba(255, 220, 100, 0.5),
+                0 0 20px rgba(255, 200, 80, 0.6);
+    filter: brightness(1.12) saturate(1.18);
+  }
+  40% {
+    transform: translateX(2px) scale(1.02) rotateZ(3deg);
+    opacity: 1;
+    box-shadow: 0 0 18px rgba(255, 200, 80, 0.5);
+    filter: brightness(1.08) saturate(1.12);
+  }
+  48% {
+    transform: translateX(-2px) scale(1.01) rotateZ(-2deg);
+    opacity: 1;
+    box-shadow: 0 0 14px rgba(255, 200, 80, 0.4);
+    filter: brightness(1.04) saturate(1.06);
   }
   100% {
-    transform: scale(1) skewX(0deg) skewY(0deg);
-    filter: brightness(1) blur(0px);
+    transform: translateX(0) scale(1) rotateZ(0deg);
+    opacity: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    filter: brightness(1) saturate(1);
+  }
+}
+
+@keyframes tileMergeRight {
+  0% {
+    transform: translateX(0) scale(1) rotateZ(0deg);
+    opacity: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    filter: brightness(1) saturate(1);
+  }
+  8% {
+    transform: translateX(-4px) scale(1.02) rotateZ(-5deg);
+    opacity: 0.95;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    filter: brightness(1.05) saturate(1.1);
+  }
+  16% {
+    transform: translateX(4px) scale(1.03) rotateZ(5deg);
+    opacity: 1;
+    box-shadow: 0 0 18px rgba(255, 200, 80, 0.5);
+    filter: brightness(1.1) saturate(1.15);
+  }
+  24% {
+    transform: translateX(-3px) scale(1.04) rotateZ(-4deg);
+    opacity: 0.98;
+    box-shadow: inset -8px 0 14px rgba(255, 220, 100, 0.6),
+                0 0 28px rgba(255, 200, 80, 0.8),
+                0 0 40px rgba(255, 180, 60, 0.4);
+    filter: brightness(1.2) saturate(1.3);
+  }
+  32% {
+    transform: translateX(3px) scale(1.03) rotateZ(4deg);
+    opacity: 0.97;
+    box-shadow: inset -6px 0 12px rgba(255, 220, 100, 0.5),
+                0 0 20px rgba(255, 200, 80, 0.6);
+    filter: brightness(1.12) saturate(1.18);
+  }
+  40% {
+    transform: translateX(-2px) scale(1.02) rotateZ(-3deg);
+    opacity: 1;
+    box-shadow: 0 0 18px rgba(255, 200, 80, 0.5);
+    filter: brightness(1.08) saturate(1.12);
+  }
+  48% {
+    transform: translateX(2px) scale(1.01) rotateZ(2deg);
+    opacity: 1;
+    box-shadow: 0 0 14px rgba(255, 200, 80, 0.4);
+    filter: brightness(1.04) saturate(1.06);
+  }
+  100% {
+    transform: translateX(0) scale(1) rotateZ(0deg);
+    opacity: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    filter: brightness(1) saturate(1);
+  }
+}
+
+@keyframes tileMergeUp {
+  0% {
+    transform: translateY(0) scale(1) rotateZ(0deg);
+    opacity: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    filter: brightness(1) saturate(1);
+  }
+  8% {
+    transform: translateY(4px) scale(1.02) rotateZ(5deg);
+    opacity: 0.95;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    filter: brightness(1.05) saturate(1.1);
+  }
+  16% {
+    transform: translateY(-4px) scale(1.03) rotateZ(-5deg);
+    opacity: 1;
+    box-shadow: 0 0 18px rgba(255, 200, 80, 0.5);
+    filter: brightness(1.1) saturate(1.15);
+  }
+  24% {
+    transform: translateY(3px) scale(1.04) rotateZ(4deg);
+    opacity: 0.98;
+    box-shadow: inset 0 8px 14px rgba(255, 220, 100, 0.6),
+                0 0 28px rgba(255, 200, 80, 0.8),
+                0 0 40px rgba(255, 180, 60, 0.4);
+    filter: brightness(1.2) saturate(1.3);
+  }
+  32% {
+    transform: translateY(-3px) scale(1.03) rotateZ(-4deg);
+    opacity: 0.97;
+    box-shadow: inset 0 6px 12px rgba(255, 220, 100, 0.5),
+                0 0 20px rgba(255, 200, 80, 0.6);
+    filter: brightness(1.12) saturate(1.18);
+  }
+  40% {
+    transform: translateY(2px) scale(1.02) rotateZ(3deg);
+    opacity: 1;
+    box-shadow: 0 0 18px rgba(255, 200, 80, 0.5);
+    filter: brightness(1.08) saturate(1.12);
+  }
+  48% {
+    transform: translateY(-2px) scale(1.01) rotateZ(-2deg);
+    opacity: 1;
+    box-shadow: 0 0 14px rgba(255, 200, 80, 0.4);
+    filter: brightness(1.04) saturate(1.06);
+  }
+  100% {
+    transform: translateY(0) scale(1) rotateZ(0deg);
+    opacity: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    filter: brightness(1) saturate(1);
+  }
+}
+
+@keyframes tileMergeDown {
+  0% {
+    transform: translateY(0) scale(1) rotateZ(0deg);
+    opacity: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    filter: brightness(1) saturate(1);
+  }
+  8% {
+    transform: translateY(-4px) scale(1.02) rotateZ(-5deg);
+    opacity: 0.95;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    filter: brightness(1.05) saturate(1.1);
+  }
+  16% {
+    transform: translateY(4px) scale(1.03) rotateZ(5deg);
+    opacity: 1;
+    box-shadow: 0 0 18px rgba(255, 200, 80, 0.5);
+    filter: brightness(1.1) saturate(1.15);
+  }
+  24% {
+    transform: translateY(-3px) scale(1.04) rotateZ(-4deg);
+    opacity: 0.98;
+    box-shadow: inset 0 -8px 14px rgba(255, 220, 100, 0.6),
+                0 0 28px rgba(255, 200, 80, 0.8),
+                0 0 40px rgba(255, 180, 60, 0.4);
+    filter: brightness(1.2) saturate(1.3);
+  }
+  32% {
+    transform: translateY(3px) scale(1.03) rotateZ(4deg);
+    opacity: 0.97;
+    box-shadow: inset 0 -6px 12px rgba(255, 220, 100, 0.5),
+                0 0 20px rgba(255, 200, 80, 0.6);
+    filter: brightness(1.12) saturate(1.18);
+  }
+  40% {
+    transform: translateY(-2px) scale(1.02) rotateZ(-3deg);
+    opacity: 1;
+    box-shadow: 0 0 18px rgba(255, 200, 80, 0.5);
+    filter: brightness(1.08) saturate(1.12);
+  }
+  48% {
+    transform: translateY(2px) scale(1.01) rotateZ(2deg);
+    opacity: 1;
+    box-shadow: 0 0 14px rgba(255, 200, 80, 0.4);
+    filter: brightness(1.04) saturate(1.06);
+  }
+  100% {
+    transform: translateY(0) scale(1) rotateZ(0deg);
+    opacity: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    filter: brightness(1) saturate(1);
+  }
+}
+
+@keyframes tileGlowPulse {
+  0%, 100% {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    filter: brightness(1) saturate(1);
+  }
+  8% {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15),
+                0 0 14px rgba(255, 200, 100, 0.3);
+    filter: brightness(1.02) saturate(1.05);
+  }
+  24% {
+    box-shadow: 0 0 28px rgba(255, 200, 80, 0.8),
+                0 0 40px rgba(255, 180, 60, 0.5),
+                inset 0 0 12px rgba(255, 220, 100, 0.4);
+    filter: brightness(1.15) saturate(1.25);
+  }
+  48% {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12),
+                0 0 16px rgba(255, 200, 100, 0.5);
+    filter: brightness(1.05) saturate(1.1);
+  }
+}
+
+@keyframes tileFlash {
+  0%, 100% {
+    opacity: 1;
+  }
+  22% {
+    opacity: 1;
+  }
+  24% {
+    opacity: 0.65;
+  }
+  26% {
+    opacity: 1;
   }
 }
 
 .tile.merged {
-  animation: tileMerge 0.25s cubic-bezier(.7,1.7,.7,1) both;
+  animation: tileGlowPulse 0.25s ease-out both,
+            tileFlash 0.25s ease-out both;
+}
+
+.tile.merged.merge-left {
+  animation: tileMergeLeft 0.25s ease-out both,
+            tileGlowPulse 0.25s ease-out both,
+            tileFlash 0.25s ease-out both;
+}
+
+.tile.merged.merge-right {
+  animation: tileMergeRight 0.25s ease-out both,
+            tileGlowPulse 0.25s ease-out both,
+            tileFlash 0.25s ease-out both;
+}
+
+.tile.merged.merge-up {
+  animation: tileMergeUp 0.25s ease-out both,
+            tileGlowPulse 0.25s ease-out both,
+            tileFlash 0.25s ease-out both;
+}
+
+.tile.merged.merge-down {
+  animation: tileMergeDown 0.25s ease-out both,
+            tileGlowPulse 0.25s ease-out both,
+            tileFlash 0.25s ease-out both;
 }
 
 .app-container.theme-light .new-game-btn {
@@ -437,6 +723,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.theme-toggle:active .theme-icon {
+  animation: themeTogglePress 0.15s ease-out;
 }
 
 /* Responsive */

@@ -17,6 +17,11 @@ function Board({ board, gameOver, mergedTiles = [], onMove }) {
     return mergedTiles.some(tile => tile.row === row && tile.col === col);
   };
 
+  const getMergeDirection = (row, col) => {
+    const mergedTile = mergedTiles.find(tile => tile.row === row && tile.col === col);
+    return mergedTile?.direction || null;
+  };
+
   return (
     <div {...handlers} className="board" style={{ touchAction: 'none' }}>
       {board.map((row, rowIndex) => (
@@ -27,6 +32,7 @@ function Board({ board, gameOver, mergedTiles = [], onMove }) {
               value={value || null}
               position={{ row: rowIndex, col: colIndex }}
               isMerged={isMergedTile(rowIndex, colIndex)}
+              mergeDirection={getMergeDirection(rowIndex, colIndex)}
             />
           ))}
         </div>
