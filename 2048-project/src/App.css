@@ -83,7 +83,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Light theme tiles */
+
 .app-container.theme-light .tile-empty {
   background-color: rgba(255, 255, 255, 0.2);
   color: transparent;
@@ -163,69 +163,69 @@
 }
 
 .app-container.theme-dark .tile-2 {
-  background-color: #4a4a3f;
-  color: #e0d5c8;
+  background-color: #6b7d8d;
+  color: #f0f0f0;
 }
 
 .app-container.theme-dark .tile-4 {
-  background-color: #535047;
-  color: #e0d5c8;
+  background-color: #5a9bc8;
+  color: #f0f0f0;
 }
 
 .app-container.theme-dark .tile-8 {
-  background-color: #8b6f47;
-  color: #fafaf5;
+  background-color: #42c890;
+  color: #1a1a1a;
 }
 
 .app-container.theme-dark .tile-16 {
-  background-color: #a0704e;
-  color: #fafaf5;
+  background-color: #e8924a;
+  color: #1a1a1a;
 }
 
 .app-container.theme-dark .tile-32 {
-  background-color: #b07755;
-  color: #fafaf5;
+  background-color: #f06d4a;
+  color: #f0f0f0;
 }
 
 .app-container.theme-dark .tile-64 {
-  background-color: #c0805c;
-  color: #fafaf5;
+  background-color: #f85959;
+  color: #f0f0f0;
 }
 
 .app-container.theme-dark .tile-128 {
-  background-color: #d4af37;
+  background-color: #ffd700;
   color: #1a1a1a;
   font-size: 40px;
 }
 
 .app-container.theme-dark .tile-256 {
-  background-color: #dab844;
+  background-color: #ffee66;
   color: #1a1a1a;
   font-size: 40px;
 }
 
 .app-container.theme-dark .tile-512 {
-  background-color: #e0c251;
+  background-color: #ffff99;
   color: #1a1a1a;
   font-size: 40px;
 }
 
 .app-container.theme-dark .tile-1024 {
-  background-color: #e6ca5e;
+  background-color: #ffff00;
   color: #1a1a1a;
   font-size: 32px;
 }
 
 .app-container.theme-dark .tile-2048 {
-  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+  background: linear-gradient(135deg, #ffff33 0%, #ffff99 100%);
   color: #1a1a1a;
   font-size: 32px;
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+  box-shadow: 0 0 20px rgba(255, 255, 0, 0.8);
 }
 
 .app-container.theme-dark .tile-large {
-  background: linear-gradient(135deg, #f0ad4e 0%, #ec971f 100%);
-  color: #1a1a1a;
+  background: linear-gradient(135deg, #ff8844 0%, #ff5533 100%);
+  color: #f0f0f0;
   font-size: 28px;
 }
 
@@ -334,6 +334,38 @@
     opacity: 1;
     transform: translate(-50%, -50%);
   }
+}
+
+
+@keyframes tileMerge {
+  0% {
+    transform: scale(1) skewX(0deg) skewY(0deg);
+    filter: brightness(1) blur(0px);
+  }
+  15% {
+    transform: scaleX(1.18) scaleY(0.92) skewX(-6deg) skewY(2deg);
+    filter: brightness(1.01) blur(0.2px);
+  }
+  35% {
+    transform: scaleX(0.92) scaleY(1.15) skewX(8deg) skewY(-4deg);
+    filter: brightness(1.01) blur(0.3px);
+  }
+  55% {
+    transform: scaleX(1.12) scaleY(0.98) skewX(-8deg) skewY(3deg);
+    filter: brightness(1.01) blur(0.2px);
+  }
+  75% {
+    transform: scaleX(1.04) scaleY(1.08) skewX(4deg) skewY(-2deg);
+    filter: brightness(1.01) blur(0.1px);
+  }
+  100% {
+    transform: scale(1) skewX(0deg) skewY(0deg);
+    filter: brightness(1) blur(0px);
+  }
+}
+
+.tile.merged {
+  animation: tileMerge 0.25s cubic-bezier(.7,1.7,.7,1) both;
 }
 
 .app-container.theme-light .new-game-btn {

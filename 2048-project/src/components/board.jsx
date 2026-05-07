@@ -1,6 +1,10 @@
 import Tile from './tile'
 
-function Board({ board, gameOver }) {
+function Board({ board, gameOver, mergedTiles = [] }) {
+  const isMergedTile = (row, col) => {
+    return mergedTiles.some(tile => tile.row === row && tile.col === col);
+  };
+
   return (
     <div className="board">
       {board.map((row, rowIndex) => (
@@ -10,6 +14,7 @@ function Board({ board, gameOver }) {
               key={`${rowIndex}-${colIndex}`} 
               value={value || null}
               position={{ row: rowIndex, col: colIndex }}
+              isMerged={isMergedTile(rowIndex, colIndex)}
             />
           ))}
         </div>

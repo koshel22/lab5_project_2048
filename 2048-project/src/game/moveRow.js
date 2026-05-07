@@ -9,16 +9,21 @@ function boardsAreEqual(a, b) {
 function moveRowLeft(row) {
   const filtered = row.filter(x => x !== 0);
   const result = [];
+  const mergedPositions = [];
   let score = 0;
+  let resultIndex = 0;
 
   for (let i = 0; i < filtered.length; i++) {
     if (filtered[i] === filtered[i + 1]) {
       const merged = filtered[i] * 2;
       result.push(merged);
+      mergedPositions.push(resultIndex);
       score += merged;
+      resultIndex++;
       i++;
     } else {
       result.push(filtered[i]);
+      resultIndex++;
     }
   }
 
@@ -26,7 +31,7 @@ function moveRowLeft(row) {
     result.push(0);
   }
 
-  return { row: result, score };
+  return { row: result, score, mergedPositions };
 }
 
 export function move(board, direction, currentScore) {
@@ -34,6 +39,7 @@ export function move(board, direction, currentScore) {
   const originalBoard = board.map(row => [...row]);
 
   let gainedScore = 0;
+  let mergedTiles = [];
 
   if (direction === 'right') {
     workingBoard = reverseRows(workingBoard);
@@ -44,9 +50,22 @@ export function move(board, direction, currentScore) {
     workingBoard = reverseRows(workingBoard);
   }
 
-  workingBoard = workingBoard.map(row => {
-    const { row: newRow, score } = moveRowLeft(row);
+  workingBoard = workingBoard.map((row, rowIndex) => {
+    const { row: newRow, score, mergedPositions } = moveRowLeft(row);
     gainedScore += score;
+    
+    mergedPositions.forEach(pos => {
+      if (direction === 'right') {
+        mergedTiles.push({ row: rowIndex, col: row.length - 1 - pos });
+      } else if (direction === 'left') {
+        mergedTiles.push({ row: rowIndex, col: pos });
+      } else if (direction === 'up') {
+        mergedTiles.push({ row: pos, col: rowIndex });
+      } else if (direction === 'down') {
+        mergedTiles.push({ row: row.length - 1 - pos, col: rowIndex });
+      }
+    });
+    
     return newRow;
   });
 
@@ -65,13 +84,15 @@ export function move(board, direction, currentScore) {
     return {
       board: board,
       score: currentScore,
-      moved: false
+      moved: false,
+      mergedTiles: []
     };
   }
 
   return {
     board: workingBoard,
     score: currentScore + gainedScore,
-    moved: true
+    moved: true,
+    mergedTiles
   };
 }

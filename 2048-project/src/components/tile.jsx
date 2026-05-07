@@ -1,4 +1,4 @@
-function Tile({ value = null, position = null }) {
+function Tile({ value = null, position = null, isMerged = false }) {
   const getTileColor = (value) => {
     if (!value) return 'tile-empty'
     
@@ -21,7 +21,7 @@ function Tile({ value = null, position = null }) {
 
   return (
     <div 
-      className={`tile ${getTileColor(value)}`}
+      className={`tile ${getTileColor(value)} ${isMerged ? 'merged' : ''}`}
       data-value={value}
     >
       {value && <span className="tile-value">{value}</span>}

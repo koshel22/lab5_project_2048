@@ -7,7 +7,7 @@ import { useGame } from './hooks/usegame'
 
 function App() {
   const [theme, setTheme] = useState('light')
-  const { board, score, gameOver, move, restart } = useGame()
+  const { board, score, gameOver, mergedTiles, move, restart } = useGame()
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'))
@@ -22,7 +22,7 @@ function App() {
         </header>
         
         <main className="game-main">
-          <Board board={board} gameOver={gameOver} />
+          <Board board={board} gameOver={gameOver} mergedTiles={mergedTiles} />
         </main>
 
         <ThemeToggle theme={theme} onToggle={toggleTheme} />

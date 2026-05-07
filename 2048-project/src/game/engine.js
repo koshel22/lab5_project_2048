@@ -14,7 +14,8 @@ export function initGame(size = 4) {
   return {
     board,
     score: 0,
-    gameOver: false
+    gameOver: false,
+    mergedTiles: []
   };
 }
 
@@ -49,6 +50,7 @@ export function gameStep(state, direction) {
   return {
     board: newBoard,
     score: result.score,
-    gameOver: isGameOver
+    gameOver: isGameOver,
+    mergedTiles: result.mergedTiles
   };
 }
