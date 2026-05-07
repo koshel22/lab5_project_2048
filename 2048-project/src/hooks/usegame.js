@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useCallback } from 'react'
+import { useEffect, useReducer, useCallback, useState } from 'react'
 import { initGame, gameStep } from '../game/engine'
 
 /**
@@ -12,6 +12,9 @@ function gameReducer(state, action) {
     case 'RESTART':
       return initGame(4)
     
+    case 'CLEAR_MERGED':
+      return { ...state, mergedTiles: [] }
+    
     default:
       return state
   }
@@ -19,10 +22,11 @@ function gameReducer(state, action) {
 
 /**
  * Hook that manages the 2048 game state and logic
- * Returns: { board, score, gameOver, move, restart }
+ * Returns: { board, score, gameOver, move, restart, mergedTiles }
  */
 export function useGame() {
   const [gameState, dispatch] = useReducer(gameReducer, null, () => initGame(4))
+  const [prevMergedTiles, setPrevMergedTiles] = useState([])
 
   // Function to make a move
   const move = useCallback((direction) => {
@@ -33,6 +37,18 @@ export function useGame() {
   const restart = useCallback(() => {
     dispatch({ type: 'RESTART' })
   }, [])
+
+  // Clear merged tiles after animation completes
+  useEffect(() => {
+    if (gameState.mergedTiles && gameState.mergedTiles.length > 0) {
+      setPrevMergedTiles(gameState.mergedTiles)
+      const timer = setTimeout(() => {
+        dispatch({ type: 'CLEAR_MERGED' })
+        setPrevMergedTiles([])
+      }, 300)
+      return () => clearTimeout(timer)
+    }
+  }, [gameState.mergedTiles])
 
   // Handle keyboard controls
   useEffect(() => {
@@ -64,10 +80,15 @@ export function useGame() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [move])
 
+  const displayedMerged = gameState.mergedTiles && gameState.mergedTiles.length > 0 
+    ? gameState.mergedTiles 
+    : prevMergedTiles;
+
   return {
     board: gameState.board,
     score: gameState.score,
     gameOver: gameState.gameOver,
+    mergedTiles: displayedMerged,
     move,
     restart
   }
