@@ -53,22 +53,19 @@ export function useGame() {
   // Handle keyboard controls
   useEffect(() => {
     const handleKeyDown = (e) => {
+      // Using e.code for layout-independent control
       const keyMap = {
         'ArrowUp': 'up',
         'ArrowDown': 'down',
         'ArrowLeft': 'left',
         'ArrowRight': 'right',
-        'w': 'up',
-        'W': 'up',
-        's': 'down',
-        'S': 'down',
-        'a': 'left',
-        'A': 'left',
-        'd': 'right',
-        'D': 'right'
+        'KeyW': 'up',
+        'KeyS': 'down',
+        'KeyA': 'left',
+        'KeyD': 'right'
       }
 
-      const direction = keyMap[e.key]
+      const direction = keyMap[e.code]
       
       if (direction) {
         e.preventDefault()

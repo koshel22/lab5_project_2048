@@ -22,7 +22,7 @@ function App() {
         </header>
         
         <main className="game-main">
-          <Board board={board} gameOver={gameOver} mergedTiles={mergedTiles} />
+          <Board board={board} gameOver={gameOver} mergedTiles={mergedTiles} onMove={move} />
         </main>
 
         <ThemeToggle theme={theme} onToggle={toggleTheme} />

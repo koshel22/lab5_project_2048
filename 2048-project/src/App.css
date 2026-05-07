@@ -55,6 +55,9 @@
   width: 420px;
   height: 420px;
   position: relative;
+  touch-action: none; /* Каже браузеру: "не чіпай жести, я сам" */
+  -webkit-user-select: none; /* Забороняє виділення плиток при свайпах */
+  user-select: none;
 }
 
 .app-container.theme-light .board {
@@ -81,6 +84,7 @@
   user-select: none;
   position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  touch-action: none;
 }
 
 
@@ -437,57 +441,41 @@
 
 /* Responsive */
 @media (max-width: 700px) {
-  .app-container {
-    padding: 15px;
-  }
-
-  .game-wrapper {
-    max-width: 100%;
-  }
-
   .game-header h1 {
     font-size: 36px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+  }
+
+  /* Зменшуємо контейнер рахунку та кнопки */
+  .score-container {
+    width: 100%;
+    max-width: 300px; /* Обмежуємо ширину */
+    gap: 10px;
+    flex-wrap: nowrap; /* Забороняємо розрив рядка */
+  }
+
+  .score-box {
+    min-width: 70px;
+    padding: 5px 10px;
+  }
+
+  .new-game-btn {
+    padding: 8px 15px;
+    font-size: 14px;
+    flex-shrink: 1; /* Кнопка може трохи стискатися */
   }
 
   .board {
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-    gap: 12px;
-    padding: 15px;
+    width: 320px; /* Фіксований комфортний розмір для телефону */
+    height: 320px;
+    padding: 8px;
+    gap: 8px;
   }
 
   .tile {
-    font-size: 32px;
-    border-radius: 5px;
-  }
-
-  .tile-128,
-  .tile-256,
-  .tile-512 {
-    font-size: 26px;
-  }
-
-  .tile-1024,
-  .tile-2048,
-  .tile-large {
-    font-size: 18px;
-  }
-
-  .score-container {
-    gap: 12px;
-    margin-bottom: 15px;
-  }
-
-  .score-box,
-  .new-game-btn {
-    width: 100px;
-    height: 100px;
-  }
-
-  .score-value {
-    font-size: 24px;
+    width: 70px;
+    height: 70px;
+    font-size: 24px !important;
   }
 }
 
